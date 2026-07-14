@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260710-05-9ed98a3"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Taste Personality Carousel</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Raleway:wght@300;400&amp;display=swap" rel="stylesheet">
+  <style>
+        :root { --vh: 1vh; }
+        body { font-family: 'Raleway', sans-serif; margin: 0; }
+        .carousel-wrap { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; display: flex; }
+        .carousel-wrap::-webkit-scrollbar { display: none; }
+        .slide { scroll-snap-align: start; flex: 0 0 100%; aspect-ratio: 1080/1350; position: relative; overflow: hidden; }
+        .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .slide-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(245,235,220,0.55) 0%, rgba(235,220,200,0.7) 50%, rgba(245,235,220,0.6) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12% 10%; text-align: center; }
+        .song-title { font-family: 'Playfair Display', serif; font-weight: 700; margin-bottom: auto; padding-top: 15%; }
+        .personality { font-family: 'Raleway', sans-serif; font-weight: 300; margin-top: auto; padding-bottom: 15%; line-height: 1.6; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(180,160,140,0.4); transition: all 0.3s; }
+        .dot.active { background: #8b6f47; width: 20px; border-radius: 4px; }
+    </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/0179d719c431a79e.data_sdk.js" type="text/javascript" integrity="sha512-OsRvJkI5GkC3MJQcgotQYotpzrMSX415GiKKgvYdxQEEkzD/fdchShO2FMSy0PJr/tiINMXOk5Vl2zAgg6bUiA=="></script>
+  <script src="/_sdk/9432170dbd2ae0df.resizing_sdk.js" type="text/javascript" integrity="sha512-FeT+58sb1f9ejWPWFjCbJvTT+SDwGV+ngrHUnlO7TWEOoqwOLj6p256kO3vOL7DIWl1cIgrobiof8v2bOigwPg=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full" style="background:#f5ebe0;">
+  <main class="w-full max-w-[540px] mx-auto" style="height:calc(100 * min(var(--vh,1vh),1vh)); display:flex; flex-direction:column;">
+   <div class="carousel-wrap flex-1" id="carousel"><!-- Slide 1 Cover -->
+    <div class="slide"><img data-template-id="slide1-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide1-title" class="canva-text song-title" style="font-size:clamp(22px,5vw,36px);color:#3d2b1f;padding-top:25%;"></p>
+      <p data-template-id="slide1-sub" class="canva-text personality" style="font-size:clamp(13px,3vw,18px);color:#6b5344;padding-bottom:20%;"></p>
+     </div>
+    </div><!-- Slide 2 -->
+    <div class="slide"><img data-template-id="slide2-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide2-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide2-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 3 -->
+    <div class="slide"><img data-template-id="slide3-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide3-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide3-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 4 -->
+    <div class="slide"><img data-template-id="slide4-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide4-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide4-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 5 -->
+    <div class="slide"><img data-template-id="slide5-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide5-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide5-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 6 -->
+    <div class="slide"><img data-template-id="slide6-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide6-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide6-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 7 -->
+    <div class="slide"><img data-template-id="slide7-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide7-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide7-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 8 -->
+    <div class="slide"><img data-template-id="slide8-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide8-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide8-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 9 -->
+    <div class="slide"><img data-template-id="slide9-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide9-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide9-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 10 -->
+    <div class="slide"><img data-template-id="slide10-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide10-title" class="canva-text song-title" style="font-size:clamp(26px,6vw,42px);color:#3d2b1f;"></p>
+      <p data-template-id="slide10-desc" class="canva-text personality" style="font-size:clamp(14px,3.2vw,20px);color:#5c4033;"></p>
+     </div>
+    </div><!-- Slide 11 Closing -->
+    <div class="slide"><img data-template-id="slide11-img" class="canva-image" loading="lazy">
+     <div class="slide-overlay">
+      <p data-template-id="slide11-title" class="canva-text song-title" style="font-size:clamp(24px,5.5vw,38px);color:#3d2b1f;padding-top:25%;"></p>
+      <p data-template-id="slide11-sub" class="canva-text personality" style="font-size:clamp(13px,3vw,18px);color:#6b5344;padding-bottom:20%;"></p>
+     </div>
+    </div>
+   </div><!-- Dots -->
+   <div class="flex items-center justify-center gap-2 py-3" id="dots"></div>
+  </main>
+  <script src="/_sdk/719055fef2a85d14.editing_sdk.js" integrity="sha512-kFqrdGgIiTOsu307feB5Cy3JVP9IayftsmCIZ0csxYBGuBmJQPhyvcnmKR8F0fTW97h5s1gAvz3SumI8zJ6OxQ=="></script>
+  <script>
+        const carousel = document.getElementById('carousel');
+        const dotsContainer = document.getElementById('dots');
+        const totalSlides = 11;
+        for (let i = 0; i < totalSlides; i++) {
+            const d = document.createElement('div');
+            d.className = 'dot' + (i === 0 ? ' active' : '');
+            d.addEventListener('click', () => carousel.scrollTo({ left: carousel.offsetWidth * i, behavior: 'smooth' }));
+            dotsContainer.appendChild(d);
+        }
+        carousel.addEventListener('scroll', () => {
+            const idx = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+            dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a19eb14d8406a8fc',t:'MTc4Mzg0NTA5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

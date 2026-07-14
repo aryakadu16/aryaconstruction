@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Request Demo</title>
+</head>
+<body>
+  <button id="payButton">Pay Now</button>
+
+  <script>
+    const payButton = document.getElementById('payButton');
+
+    payButton.addEventListener('click', async () => {
+      if (!window.PaymentRequest) {
+        alert('Payment Request API not supported in this browser.');
+        return;
+      }
+
+      const supportedInstruments = [
+        {
+          supportedMethods: 'basic-card',
+          data: {
+            supportedNetworks: ['visa', 'mastercard', 'amex'],
+            supportedTypes: ['debit', 'credit']
+          }
+        }
+      ];
+
+      const details = {
+        total: {
+          label: 'Total',
+          amount: { currency: 'USD', value: '19.99' }
+        },
+        displayItems: [
+          {
+            label: 'Cool Gadget',
+            amount: { currency: 'USD', value: '19.99' }
+          }
+        ]
+      };
+
+      try {
+        const request = new PaymentRequest(supportedInstruments, details);
+        const response = await request.show();
+        await response.complete('success');
+        alert('Payment successful!');
+      } catch (err) {
+        console.error('Payment failed', err);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+    <a href=""></a>
+</body>
+</html>
