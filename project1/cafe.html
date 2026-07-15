@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Brewyard Speciality Coffee | LCR, Pune</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#241712;
+    --espresso-2:#2f1e17;
+    --parchment:#f2e8d9;
+    --parchment-dim:#e6d8c2;
+    --crema:#c98b46;
+    --copper:#b5652f;
+    --sage:#6f7a55;
+    --ink:#1b120d;
+    --line: rgba(242,232,217,0.16);
+    --line-dark: rgba(27,18,13,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--espresso);
+    color:var(--parchment);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:450;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--crema);
+  }
+  .wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
+  img{max-width:100%; display:block;}
+
+  /* ===== NAV ===== */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(36,23,18,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; max-width:1160px; margin:0 auto;
+  }
+  .brandmark{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-size:1.15rem; letter-spacing:-0.01em;
+  }
+  .brandmark .dot{
+    width:8px; height:8px; border-radius:50%; background:var(--crema);
+  }
+  .navlinks{display:flex; gap:34px; font-size:0.88rem;}
+  .navlinks a{opacity:0.8; transition:opacity 0.2s;}
+  .navlinks a:hover{opacity:1;}
+  .nav-cta{
+    font-family:'JetBrains Mono', monospace; font-size:0.75rem;
+    letter-spacing:0.05em; text-transform:uppercase;
+    border:1px solid var(--parchment); padding:9px 18px; border-radius:2px;
+    transition:background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover{background:var(--parchment); color:var(--ink);}
+  .navtoggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:140px 32px 80px;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(201,139,70,0.16), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(111,122,85,0.14), transparent 50%),
+      var(--espresso);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, transparent, transparent 78px, rgba(242,232,217,0.025) 79px, transparent 80px);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1160px; margin:0 auto; width:100%; position:relative; z-index:2;}
+  .hero-top{
+    display:flex; align-items:center; gap:16px; margin-bottom:28px;
+    animation: rise 0.9s ease both;
+  }
+  .rating-pill{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--line); padding:7px 14px; border-radius:999px;
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+  }
+  .rating-pill .stars{color:var(--crema); letter-spacing:1px;}
+  .hero h1{
+    font-size:clamp(3rem, 8vw, 6.4rem);
+    line-height:0.98;
+    color:var(--parchment);
+    animation: rise 1s 0.1s ease both;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--crema); font-weight:300;
+  }
+  .hero-sub{
+    display:flex; flex-wrap:wrap; gap:28px 48px;
+    margin-top:34px; padding-top:28px; border-top:1px solid var(--line);
+    max-width:760px;
+    animation: rise 1s 0.2s ease both;
+  }
+  .hero-sub-item .label{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--sage);
+    display:block; margin-bottom:6px;
+  }
+  .hero-sub-item .val{font-size:1rem; color:var(--parchment-dim);}
+  .hero-actions{display:flex; gap:16px; margin-top:44px; flex-wrap:wrap; animation: rise 1s 0.3s ease both;}
+  .btn-primary{
+    background:var(--crema); color:var(--ink);
+    padding:15px 30px; font-size:0.9rem; font-weight:500;
+    border-radius:2px; transition:transform 0.25s ease, background 0.25s;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:#dba465; transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--parchment);
+    padding:15px 30px; font-size:0.9rem;
+    border-radius:2px; transition:border-color 0.25s, background 0.25s;
+  }
+  .btn-ghost:hover{border-color:var(--parchment); background:rgba(242,232,217,0.05);}
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:16px 0; overflow:hidden; white-space:nowrap;
+    background:var(--espresso-2);
+  }
+  .marquee-track{
+    display:inline-flex; gap:48px; animation:scroll 26s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+    letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment-dim);
+  }
+  .marquee-track span.dim{color:var(--sage);}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ===== SECTION SHARED ===== */
+  section{padding:120px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:60px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(2.1rem, 4vw, 3rem); max-width:640px;}
+  .section-head p{max-width:340px; color:var(--parchment-dim); font-size:0.95rem;}
+
+  /* ===== ABOUT ===== */
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  }
+  .about-visual{
+    position:relative; aspect-ratio:4/5;
+    background:
+      linear-gradient(160deg, rgba(201,139,70,0.25), rgba(111,122,85,0.15)),
+      var(--espresso-2);
+    border:1px solid var(--line); border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .about-visual .ring{
+    width:62%; aspect-ratio:1;
+    border-radius:50%;
+    border:1.5px dashed rgba(242,232,217,0.35);
+    display:flex; align-items:center; justify-content:center;
+    animation:spin 40s linear infinite;
+  }
+  .about-visual .ring-inner{
+    width:70%; aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #3a2418, #1a0f0a 70%);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 0 60px rgba(201,139,70,0.15);
+  }
+  @keyframes spin{ to{transform:rotate(360deg);} }
+  .about-copy p{color:var(--parchment-dim); font-size:1.05rem; margin-bottom:20px; max-width:480px;}
+  .about-stats{display:flex; gap:40px; margin-top:36px;}
+  .about-stats .n{font-family:'Fraunces', serif; font-size:2.4rem; color:var(--crema);}
+  .about-stats .l{font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage);}
+
+  /* ===== MENU ===== */
+  .menu-section{background:var(--parchment); color:var(--ink);}
+  .menu-section .eyebrow{color:var(--copper);}
+  .menu-section .section-head p{color:#5a4c3d;}
+  .menu-tabs{display:flex; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
+  .menu-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:0 60px;
+  }
+  .menu-cat{margin-bottom:44px;}
+  .menu-cat h3{
+    font-size:1.3rem; margin-bottom:22px; padding-bottom:12px;
+    border-bottom:1px solid var(--line-dark);
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .menu-cat h3 .tag{font-family:'JetBrains Mono', monospace; font-size:0.65rem; color:var(--copper); letter-spacing:0.1em;}
+  .menu-item{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:14px 0; border-bottom:1px dashed rgba(27,18,13,0.16);
+  }
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item .mi-name{font-size:1rem; font-weight:500;}
+  .menu-item .mi-desc{font-size:0.85rem; color:#7a6b58; margin-top:3px;}
+  .menu-item .mi-price{
+    font-family:'JetBrains Mono', monospace; font-size:0.92rem;
+    color:var(--copper); white-space:nowrap; align-self:flex-start;
+  }
+  .menu-note{
+    margin-top:12px; font-family:'JetBrains Mono', monospace; font-size:0.75rem;
+    color:#8a7a63; letter-spacing:0.02em;
+  }
+
+  /* ===== BREW RATIO (signature) ===== */
+  .brew{background:var(--espresso);}
+  .brew-head{margin-bottom:70px;}
+  .brew-steps{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .brew-step{
+    background:var(--espresso); padding:38px 28px; position:relative;
+  }
+  .brew-step .ratio{
+    font-family:'JetBrains Mono', monospace; font-size:2.6rem; color:var(--crema);
+    margin-bottom:14px; display:block;
+  }
+  .brew-step .time{
+    font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--sage);
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px; display:block;
+  }
+  .brew-step h4{font-size:1.05rem; margin-bottom:8px; color:var(--parchment);}
+  .brew-step p{font-size:0.88rem; color:var(--parchment-dim);}
+  .brew-bar{
+    height:3px; width:100%; background:rgba(242,232,217,0.1); margin-top:24px; position:relative; overflow:hidden;
+  }
+  .brew-bar i{
+    position:absolute; left:0; top:0; height:100%; background:var(--crema); border-radius:2px;
+  }
+
+  /* ===== REVIEWS ===== */
+  .reviews{background:var(--espresso-2);}
+  .reviews-layout{display:grid; grid-template-columns:0.8fr 1.2fr; gap:70px;}
+  .rating-block{}
+  .rating-big{font-family:'Fraunces', serif; font-size:5rem; line-height:1;}
+  .rating-stars{color:var(--crema); font-size:1.3rem; margin:12px 0 6px;}
+  .rating-count{color:var(--parchment-dim); font-size:0.9rem; margin-bottom:36px;}
+  .bar-row{display:flex; align-items:center; gap:12px; margin-bottom:10px; font-family:'JetBrains Mono', monospace; font-size:0.78rem;}
+  .bar-row .num{width:14px; color:var(--parchment-dim);}
+  .bar-track{flex:1; height:6px; background:rgba(242,232,217,0.1); border-radius:4px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--crema); border-radius:4px;}
+  .quote-list{display:flex; flex-direction:column; gap:0;}
+  .quote{
+    padding:28px 0; border-bottom:1px solid var(--line);
+  }
+  .quote:first-child{padding-top:0;}
+  .quote .qstars{color:var(--crema); font-size:0.85rem; margin-bottom:12px; letter-spacing:2px;}
+  .quote p{font-size:1.05rem; color:var(--parchment-dim); font-family:'Fraunces', serif; font-weight:300; font-style:italic; line-height:1.5;}
+  .quote .who{margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--sage); letter-spacing:0.05em; text-transform:uppercase;}
+
+  /* ===== VISIT ===== */
+  .visit{background:var(--parchment); color:var(--ink);}
+  .visit .eyebrow{color:var(--copper);}
+  .visit-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:0; border:1px solid var(--line-dark); border-radius:4px; overflow:hidden;}
+  .visit-info{padding:56px; background:var(--parchment);}
+  .visit-info h2{font-size:2.2rem; margin-bottom:30px;}
+  .info-row{display:flex; gap:18px; padding:20px 0; border-bottom:1px solid var(--line-dark);}
+  .info-row:last-child{border-bottom:none;}
+  .info-row .k{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--copper); width:110px; flex-shrink:0; padding-top:2px;
+  }
+  .info-row .v{font-size:0.98rem; color:var(--ink); line-height:1.55;}
+  .info-row .v .status{color:var(--sage); font-weight:600;}
+  .visit-map{
+    background:linear-gradient(160deg, #d8c9ab, #c7b58f);
+    position:relative; min-height:340px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .visit-map .pin{
+    width:48px; height:48px; border-radius:50% 50% 50% 0; background:var(--copper);
+    transform:rotate(-45deg); position:relative; box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  }
+  .visit-map .pin::after{
+    content:""; position:absolute; width:16px; height:16px; background:var(--parchment); border-radius:50%;
+    top:50%; left:50%; transform:translate(-50%,-50%) rotate(45deg);
+  }
+  .visit-map::before{
+    content:""; position:absolute; inset:0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(27,18,13,0.06) 39px), repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(27,18,13,0.06) 39px);
+  }
+  .map-link{
+    position:absolute; bottom:24px; left:24px; right:24px;
+    background:var(--ink); color:var(--parchment); text-align:center;
+    padding:14px; border-radius:2px; font-family:'JetBrains Mono', monospace; font-size:0.75rem;
+    letter-spacing:0.08em; text-transform:uppercase; transition:background 0.2s;
+  }
+  .map-link:hover{background:#000;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--ink); padding:60px 0 30px;}
+  .footer-top{display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap; padding-bottom:40px; border-bottom:1px solid var(--line);}
+  .footer-brand h3{font-size:1.8rem; margin-bottom:10px;}
+  .footer-brand p{color:var(--parchment-dim); max-width:320px; font-size:0.92rem;}
+  .footer-cols{display:flex; gap:70px; flex-wrap:wrap;}
+  .footer-col .label{font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); margin-bottom:16px; display:block;}
+  .footer-col a, .footer-col span{display:block; font-size:0.9rem; color:var(--parchment-dim); margin-bottom:10px;}
+  .footer-bottom{display:flex; justify-content:space-between; padding-top:24px; font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--sage); flex-wrap:wrap; gap:10px;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px){
+    .navlinks{display:none;}
+    .about-grid, .reviews-layout, .visit-grid{grid-template-columns:1fr;}
+    .about-visual{order:-1; margin-bottom:20px;}
+    .menu-grid{grid-template-columns:1fr;}
+    .brew-steps{grid-template-columns:repeat(2,1fr);}
+    section{padding:80px 0;}
+    .visit-info{padding:36px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="navbar">
+    <div class="brandmark"><span class="dot"></span>The Brewyard</div>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#brew">The Brew</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="nav-cta" href="#visit">Directions</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="rating-pill"><span class="stars">★★★★☆</span> 4.3 · 59 reviews</div>
+      <div class="rating-pill">Open now · Closes 11 pm</div>
+    </div>
+    <h1>Speciality coffee,<br><em>brewed</em> with intent.</h1>
+    <div class="hero-sub">
+      <div class="hero-sub-item">
+        <span class="label">Where</span>
+        <span class="val">Law College Road, Erandwane, Pune</span>
+      </div>
+      <div class="hero-sub-item">
+        <span class="label">Price for two</span>
+        <span class="val">₹400 – ₹1,400</span>
+      </div>
+      <div class="hero-sub-item">
+        <span class="label">Category</span>
+        <span class="val">Cafe · Roastery</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#visit">Get Directions</a>
+      <a class="btn-ghost" href="#menu">View Menu</a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Pour Over</span><span class="dim">·</span>
+    <span>Cold Brew</span><span class="dim">·</span>
+    <span>Single Origin</span><span class="dim">·</span>
+    <span>Filter Kaapi</span><span class="dim">·</span>
+    <span>House Roasted</span><span class="dim">·</span>
+    <span>4.3 ★ on Google</span><span class="dim">·</span>
+    <span>Pour Over</span><span class="dim">·</span>
+    <span>Cold Brew</span><span class="dim">·</span>
+    <span>Single Origin</span><span class="dim">·</span>
+    <span>Filter Kaapi</span><span class="dim">·</span>
+    <span>House Roasted</span><span class="dim">·</span>
+    <span>4.3 ★ on Google</span><span class="dim">·</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">The Brewyard</span>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem); margin:16px 0 24px;">A yard for slow coffee, in the middle of LCR.</h2>
+      <p>Tucked into a bungalow just off Law College Road, The Brewyard is built around one idea — coffee deserves the same patience as any good meal. We source, roast and brew in-house, and hand every cup to you the way our tasters approved it.</p>
+      <p>Pull up a chair in the courtyard, watch a pour-over happen at the bar, or just come for the quiet and the wifi. Either way, the beans were picked with you in mind.</p>
+      <div class="about-stats">
+        <div><div class="n">59</div><div class="l">Google Reviews</div></div>
+        <div><div class="n">4.3</div><div class="l">Avg. Rating</div></div>
+        <div><div class="n">79+</div><div class="l">Photos Shared</div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="ring"><div class="ring-inner"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="menu-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">On The Counter</span>
+        <h2 style="margin-top:14px;">Menu highlights</h2>
+      </div>
+      <p>A short pull from our full menu — filter, espresso, and something to eat alongside it.</p>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-cat">
+        <h3>Pour Over <span class="tag">Single Origin</span></h3>
+        <div class="menu-item">
+          <div><div class="mi-name">V60 — House Blend</div><div class="mi-desc">Rotating single-origin, brewed to order</div></div>
+          <div class="mi-price">₹280</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">Chemex, serves two</div><div class="mi-desc">Clean cup, low acidity roast</div></div>
+          <div class="mi-price">₹450</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">Aeropress</div><div class="mi-desc">Bright and full-bodied</div></div>
+          <div class="mi-price">₹260</div>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3>Espresso Bar <span class="tag">Classics</span></h3>
+        <div class="menu-item">
+          <div><div class="mi-name">Flat White</div><div class="mi-desc">Double ristretto, steamed milk</div></div>
+          <div class="mi-price">₹220</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">Cortado</div><div class="mi-desc">Equal parts espresso and milk</div></div>
+          <div class="mi-price">₹200</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">Affogato</div><div class="mi-desc">Vanilla bean, hot shot poured tableside</div></div>
+          <div class="mi-price">₹260</div>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3>Cold &amp; Slow <span class="tag">Chilled</span></h3>
+        <div class="menu-item">
+          <div><div class="mi-name">Cold Brew, 18hr steep</div><div class="mi-desc">Served over a single large cube</div></div>
+          <div class="mi-price">₹240</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">Iced Filter Kaapi</div><div class="mi-desc">South Indian filter coffee, chilled</div></div>
+          <div class="mi-price">₹190</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">Coffee Tonic</div><div class="mi-desc">Espresso, tonic water, orange peel</div></div>
+          <div class="mi-price">₹270</div>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3>From The Kitchen <span class="tag">Bakes</span></h3>
+        <div class="menu-item">
+          <div><div class="mi-name">Butter Croissant</div><div class="mi-desc">Baked fresh each morning</div></div>
+          <div class="mi-price">₹150</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">Banana Walnut Loaf</div><div class="mi-desc">Slice, warmed on request</div></div>
+          <div class="mi-price">₹180</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="mi-name">All-Day Breakfast Bowl</div><div class="mi-desc">Eggs, greens, sourdough toast</div></div>
+          <div class="mi-price">₹390</div>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">// Prices are indicative and rounded for display. Replace with your live menu before publishing.</p>
+  </div>
+</section>
+
+<section id="brew" class="brew">
+  <div class="wrap">
+    <div class="brew-head section-head">
+      <div>
+        <span class="eyebrow">How We Brew</span>
+        <h2 style="margin-top:14px;">Every pour, timed and ratioed.</h2>
+      </div>
+      <p>A V60 at the bar, start to finish — the four steps behind every filter cup we serve.</p>
+    </div>
+    <div class="brew-steps">
+      <div class="brew-step">
+        <span class="ratio">1:16</span>
+        <span class="time">0:00 — 0:30</span>
+        <h4>Bloom</h4>
+        <p>Grounds meet just enough water to release CO₂ and open up the aroma.</p>
+        <div class="brew-bar"><i style="width:20%"></i></div>
+      </div>
+      <div class="brew-step">
+        <span class="ratio">1st</span>
+        <span class="time">0:30 — 1:15</span>
+        <h4>First Pour</h4>
+        <p>A slow, centre-out spiral brings the bed up to half its total water.</p>
+        <div class="brew-bar"><i style="width:45%"></i></div>
+      </div>
+      <div class="brew-step">
+        <span class="ratio">2nd</span>
+        <span class="time">1:15 — 2:00</span>
+        <h4>Second Pour</h4>
+        <p>Remaining water goes in, keeping the bed level steady throughout.</p>
+        <div class="brew-bar"><i style="width:75%"></i></div>
+      </div>
+      <div class="brew-step">
+        <span class="ratio">3:00</span>
+        <span class="time">Drawdown</span>
+        <h4>Serve</h4>
+        <p>Full drawdown by three minutes, poured straight into your cup.</p>
+        <div class="brew-bar"><i style="width:100%"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Word Of Mouth</span>
+        <h2 style="margin-top:14px;">What people say after their cup.</h2>
+      </div>
+    </div>
+    <div class="reviews-layout">
+      <div class="rating-block">
+        <div class="rating-big">4.3</div>
+        <div class="rating-stars">★★★★☆</div>
+        <div class="rating-count">Based on 59 Google reviews</div>
+        <div class="bar-row"><span class="num">5</span><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div></div>
+        <div class="bar-row"><span class="num">4</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div></div>
+        <div class="bar-row"><span class="num">3</span><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div></div>
+        <div class="bar-row"><span class="num">2</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div></div>
+        <div class="bar-row"><span class="num">1</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div></div>
+      </div>
+      <div class="quote-list">
+        <div class="quote">
+          <div class="qstars">★★★★★</div>
+          <p>"The filter coffee here is unlike anything else on Law College Road — quiet space, great for working through the afternoon."</p>
+          <div class="who">Google Review</div>
+        </div>
+        <div class="quote">
+          <div class="qstars">★★★★★</div>
+          <p>"Loved the courtyard seating and the cold brew. Service is warm without hovering."</p>
+          <div class="who">Google Review</div>
+        </div>
+        <div class="quote">
+          <div class="qstars">★★★★☆</div>
+          <p>"Solid single-origin pour overs. Gets busy on weekends, so go early if you want a table."</p>
+          <div class="who">Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Find Us</span>
+        <h2 style="margin-top:14px;">Come by the yard.</h2>
+      </div>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-info">
+        <div class="info-row">
+          <div class="k">Address</div>
+          <div class="v">Gadgil Bungalow, 129 B, Law College Road, opp. Nirmitee The Gallery, Murlidhar Smruti Society, Apex Colony, Erandwane, Pune, Maharashtra 411004</div>
+        </div>
+        <div class="info-row">
+          <div class="k">Hours</div>
+          <div class="v"><span class="status">Open now</span> · Closes 11 pm daily</div>
+        </div>
+        <div class="info-row">
+          <div class="k">Price</div>
+          <div class="v">₹400 – ₹1,400 for two people</div>
+        </div>
+        <div class="info-row">
+          <div class="k">Category</div>
+          <div class="v">Cafe · Speciality Coffee Roastery</div>
+        </div>
+        <div class="info-row">
+          <div class="k">Rating</div>
+          <div class="v">4.3 out of 5 — from 59 Google reviews</div>
+        </div>
+      </div>
+      <div class="visit-map">
+        <div class="pin"></div>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=The+Brewyard+Speciality+Coffee+Law+College+Road+Pune" target="_blank" rel="noopener">Open in Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>The Brewyard</h3>
+        <p>Speciality coffee on Law College Road, Erandwane, Pune. Roasted, brewed and poured in-house.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="label">Visit</span>
+          <span>Erandwane, Pune 411004</span>
+          <span>Open · Closes 11 pm</span>
+        </div>
+        <div class="footer-col">
+          <span class="label">Explore</span>
+          <a href="#menu">Menu</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#visit">Directions</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 The Brewyard Speciality Coffee</span>
+      <span>Built for LCR, Pune</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
