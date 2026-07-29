@@ -1,1 +1,1 @@
-# aryaconstruction
+Arya Construction is a modern, responsive business website showcasing services like civil work, waterproofing, core cutting, rebaring, and structural repair. Built with HTML, CSS, and JavaScript, it features a 3D animated hero section, smooth navigation, service details, enquiry form, and contact options, delivering a professional user experience.
